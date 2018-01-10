@@ -1,6 +1,6 @@
 from . import env
 
-: ${YarnFlags:=--silent} ## --prefer-offline --non-interactive
+: ${YarnFlags:=--silent --no-progress} ## --prefer-offline --non-interactive
 : ${YarnPackageFile:=$ProjectDir/package.json}
 : ${YarnLockFile:=$ProjectDir/yarn.lock}
 
