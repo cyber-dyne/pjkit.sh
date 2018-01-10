@@ -1,7 +1,7 @@
 from . import env
 
 : ${NpmArgs:=}
-: ${NpmLogLevel:=silent}
+: ${NpmLogLevel:=error}
 : ${NpmInstallArgs:=--depth 0 --loglevel=$NpmLogLevel --no-progress}
 : ${NpmPackageFile:=$ProjectDir/package.json}
 : ${NpmLockFile:=$ProjectDir/package-lock.json}
