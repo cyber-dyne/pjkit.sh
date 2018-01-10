@@ -1,8 +1,8 @@
 from . import env
 
 : ${BowerFile:=$ProjectDir/bower.json}
-: ${BowerFlags:=}
-: ${BowerInstallFlags:=} ## --silent
+: ${BowerArgs:=}
+: ${BowerInstallArgs:=--quiet} ## --silent
 : ${BowerLibDir:=$SystemDir}
 : ${BowerRcFile:=$ProjectDir/bowerrc.json}
 
@@ -46,7 +46,7 @@ bower_install()
 
         cd "$BowerLibDir"
 
-        eval "set -- $BowerFlags install $BowerInstallFlags"
+        eval "set -- $BowerArgs install $BowerInstallArgs"
 
         ${BowerBin:-$(which bower)} "$@"
 )}

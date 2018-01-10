@@ -1,12 +1,12 @@
 from . import env
 
 : ${ModernizrFile:=$ProjectDir/modernizr.json}
-: ${ModernizrFlags:=}
+: ${ModernizrArgs:=}
 : ${ModernizrJsFile:=$SystemDir/modernizr.js}
 
 modernizr()
 {
-        eval "set -- $ModernizrFlags $*"
+        eval "set -- $ModernizrArgs $*"
 
         ${ModernizrBin:-$(which modernizr)} --config "$ModernizrFile" --dest "$ModernizrJsFile" "$@"
 }

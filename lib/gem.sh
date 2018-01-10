@@ -3,8 +3,8 @@ from . import path
 
 : ${GemDir:=$SystemDir/gem}
 : ${GemFile:=$ProjectDir/Gemfile}
-: ${GemFlags:=}
-: ${GemInstallFlags:=--install-dir \"$GemDir\" --verbose}
+: ${GemArgs:=}
+: ${GemInstallArgs:=--install-dir \"$GemDir\" --verbose}
 
 path_add "$GemDir/bin"
 
@@ -14,7 +14,7 @@ gem_install()
 
         for gem; do
                 if ! $gem_bin list --no-details --no-versions | grep -Eq "^$gem\$"; then
-                        eval "set -- $GemFlags install $GemInstallFlags $gem"
+                        eval "set -- $GemArgs install $GemInstallArgs $gem"
 
                         GEM_PATH="$GemDir${GEM_PATH:+:$GEM_PATH}" \
                         $gem_bin "$@"

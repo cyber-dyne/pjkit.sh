@@ -1,10 +1,10 @@
 from . import env
 
 : ${BrewDir:=$SystemDir/brew}
-: ${BrewFlags:=}
+: ${BrewArgs:=}
 : ${BrewRev:=master}
 : ${BrewUrl:=https://github.com/Homebrew/brew/tarball/$BrewRev}
-: ${BrewInstallFlags:=}
+: ${BrewInstallArgs:=}
 
 path_add "$BrewDir/bin"
 
@@ -31,7 +31,7 @@ brew_install()
                 return
         fi
 
-        eval "set -- $BrewFlags install $BrewInstallFlags $*"
+        eval "set -- $BrewArgs install $BrewInstallArgs $*"
 
         $brew_bin "$@"
 }

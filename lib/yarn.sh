@@ -1,6 +1,6 @@
 from . import env
 
-: ${YarnFlags:=--silent --no-progress} ## --prefer-offline --non-interactive
+: ${YarnArgs:=--silent --no-progress} ## --prefer-offline --non-interactive
 : ${YarnPackageFile:=$ProjectDir/package.json}
 : ${YarnLockFile:=$ProjectDir/yarn.lock}
 
@@ -39,7 +39,7 @@ yarn_install()
 
         cd "$NodeLibDir"
 
-        eval "set -- $YarnFlags $*"
+        eval "set -- $YarnArgs $*"
 
         ${YarnBin:-$(which yarn)} install "$@"
 )}

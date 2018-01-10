@@ -3,8 +3,8 @@ from . import path
 from . import gem
 
 : ${BundlerDir:=$SystemDir/bundler}
-: ${BundlerFlags:=}
-: ${BundlerInstallFlags:=}
+: ${BundlerArgs:=}
+: ${BundlerInstallArgs:=}
 
 path_add "$BundlerDir/bin"
 
@@ -17,7 +17,7 @@ setup_bundler()
 
 bundler()
 {
-        eval "set -- $BundlerFlags $*"
+        eval "set -- $BundlerArgs $*"
 
         BUNDLE_GEMFILE="$GemFile" \
         BUNDLE_PATH="$BundlerDir" \
@@ -26,7 +26,7 @@ bundler()
 
 bundler_install()
 {
-        eval "set -- $BundlerInstallFlags $*"
+        eval "set -- $BundlerInstallArgs $*"
 
         bundler install "$@"
 

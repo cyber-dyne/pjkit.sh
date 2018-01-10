@@ -1,8 +1,8 @@
 from . import env
 
-: ${NpmFlags:=}
+: ${NpmArgs:=}
 : ${NpmLogLevel:=silent}
-: ${NpmInstallFlags:=--depth 0 --loglevel=$NpmLogLevel --no-progress}
+: ${NpmInstallArgs:=--depth 0 --loglevel=$NpmLogLevel --no-progress}
 : ${NpmPackageFile:=$ProjectDir/package.json}
 : ${NpmLockFile:=$ProjectDir/package-lock.json}
 
@@ -30,7 +30,7 @@ npm_install()
 
         cd "$NodeLibDir"
 
-        eval "set -- $NpmFlags install $NpmInstallFlags $*"
+        eval "set -- $NpmArgs install $NpmInstallArgs $*"
 
         npm "$@"
 )}

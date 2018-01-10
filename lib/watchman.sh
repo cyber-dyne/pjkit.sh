@@ -1,5 +1,5 @@
 : ${WatchmanMakeCmd:=$ZeroDir/build}
-: ${WatchmanMakeFlags:=--settle 0.2}
+: ${WatchmanMakeArgs:=--settle 0.2}
 : ${WatchmanMakePatterns:=\'**/*\'}
 
 setup_watchman()
@@ -31,7 +31,7 @@ watchmanmake()
 
         set -f ## noglob
 
-        eval "set -- -p $WatchmanMakePatterns $WatchmanMakeFlags --run \"$WatchmanMakeCmd $*\""
+        eval "set -- -p $WatchmanMakePatterns $WatchmanMakeArgs --run \"$WatchmanMakeCmd $*\""
 
         ${WatchmanMakeBin:-$(which watchman-make)} "$@"
 )}

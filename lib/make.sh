@@ -1,7 +1,7 @@
 from . import env
 
 : ${MakeFile:=$ProjectDir/Makefile}
-: ${MakeFlags:=PROJECT_DIR=\"$ProjectDir\" SANDBOX_DIR=\"$SandboxDir\" SYSTEM_DIR=\"$SystemDir\" --no-print-directory --no-builtin-rules}
+: ${MakeArgs:=PROJECT_DIR=\"$ProjectDir\" SANDBOX_DIR=\"$SandboxDir\" SYSTEM_DIR=\"$SystemDir\" --no-print-directory --no-builtin-rules}
 
 setup_make()
 {(
@@ -22,7 +22,7 @@ setup_make_for_macos()
 
 make()
 {
-        eval "set -- $MakeFlags $*"
+        eval "set -- $MakeArgs $*"
 
         ${MakeBin:-$(which make)} -C "$ProjectDir" -f "$MakeFile" "$@" | sed -e "s:$ProjectDir:.:g"
 }
