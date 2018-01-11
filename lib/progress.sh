@@ -2,7 +2,7 @@
 : ${ProgressRemainingMarker:= }
 : ${ProgressVerbose:=no}
 : ${ProgressSilent:=no}
-: ${ProgressBarStyle:=\\r\{completed\}  \{bar\}  \{total\}}
+: ${ProgressBarStyle:=\\r \{completed\}  \{bar\}  \{total\}}
 
 ProgressCounter=0
 # ProgressMax= ## User must define this variable.

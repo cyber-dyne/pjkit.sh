@@ -1,7 +1,7 @@
 from . import env
 
 : ${MakeFile:=$ProjectDir/Makefile}
-: ${MakeArgs:=PROJECT_DIR=\"$ProjectDir\" SANDBOX_DIR=\"$SandboxDir\" SYSTEM_DIR=\"$SystemDir\" --no-print-directory --no-builtin-rules}
+: ${MakeArgs:=PROJECT_DIR=\"$ProjectDir\" BUILD_DIR=\"$BuildDir\" SANDBOX_DIR=\"$SandboxDir\" SYSTEM_DIR=\"$SystemDir\" --no-print-directory --no-builtin-rules}
 
 setup_make()
 {(
