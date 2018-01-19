@@ -27,7 +27,7 @@ brew_install()
 {
         local brew_bin=${BrewBin:-$(which brew)}
 
-        if $brew_bin ls | grep -Eq "^$1\$"; then
+        if $brew_bin ls --versions "$1" >/dev/null 2>&1; then
                 return
         fi
 
