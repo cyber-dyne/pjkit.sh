@@ -1,14 +1,16 @@
 from . import env
 
+: ${InstallBinDir:=$SystemBinDir}
+
 install_bin()
-{
+{(
         local bin="$1"
         local bin_name="${2:-$(basename "$bin")}"
 
-        mkdir -p "$SystemBinDir"
+        mkdir -p "$InstallBinDir"
 
-        ln -sf "$bin" "$SystemBinDir/$bin_name"
-}
+        ln -sf "$bin" "$InstallBinDir/$bin_name"
+)}
 
 install_bins()
 {

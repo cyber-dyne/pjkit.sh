@@ -1,10 +1,12 @@
 from . import env
 
 : ${BrewDir:=$SystemDir/brew}
-: ${BrewArgs:=}
 : ${BrewRev:=master}
 : ${BrewUrl:=https://github.com/Homebrew/brew/tarball/$BrewRev}
+: ${BrewFile:=$ProjectDir/Brewfile.rb}
+: ${BrewArgs:=}
 : ${BrewInstallArgs:=}
+: ${BrewBundleInstallArgs:=\"--file=$BrewFile\" --no-upgrade}
 
 path_add "$BrewDir/bin"
 
@@ -23,15 +25,27 @@ setup_brew()
         test -x "$BrewDir/bin/brew" || fail 'Homebrew installation encountered a problem.\n'
 }
 
+brew()
+{
+        eval "set -- $BrewArgs $*"
+
+        ${BrewBin:-$(which brew)} "$@"
+}
+
 brew_install()
 {
-        local brew_bin=${BrewBin:-$(which brew)}
-
-        if $brew_bin ls --versions "$1" >/dev/null 2>&1; then
+        if brew ls --versions "$1" >/dev/null 2>&1; then
                 return
         fi
 
-        eval "set -- $BrewArgs install $BrewInstallArgs $*"
+        eval "set -- $BrewInstallArgs $*"
 
-        $brew_bin "$@"
+        brew install "$@"
+}
+
+brew_bundle_install()
+{
+        eval "set -- $BrewBundleInstallArgs $*"
+
+        brew bundle install "$@"
 }

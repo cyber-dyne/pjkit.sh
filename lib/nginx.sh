@@ -1,41 +1,5 @@
-from . import env
-from . import os
-
-if is_macos; then
-        from . import brew
-        : ${NginxPrefix:=$BrewDir}
-else
-        : ${NginxPrefix:=}
-fi
-: ${NginxDir:=$NginxPrefix/etc/nginx}
-
-setup_nginx()
-{(
-        from . import os
-
-        if is_macos; then
-                setup_nginx_for_macos "$@"
-        elif is_linux; then
-                setup_nginx_for_linux "$@"
-        fi
-)}
-
-setup_nginx_for_macos()
-{(
-        from . import brew
-
-        brew_install nginx
-        # brew_install homebrew/nginx/nginx-full --with-echo-module
-)}
-
-setup_nginx_for_linux()
-{(
-        from . import utils
-
-        if chkcmd apt-get && ! chkcmd nginx; then
-                sudo apt-get install -y nginx
-        fi
-)}
+: ${NginxPrefix:=}
+: ${NginxEtcDir:=$NginxPrefix/etc/nginx}
 
 nginx_start()
 {
