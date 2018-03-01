@@ -1,9 +1,6 @@
 from . import env
-# from . import path
 
 : ${NodeLibDir:=$SystemDir}
-
-# path_add "$NodeLibDir/node_modules/.bin"
 
 export_node_env()
 {

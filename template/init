@@ -1,16 +1,11 @@
 #!/usr/bin/env sh
 
-. "$(dirname "$0")/config.sh"
+: ${ProjectDir:=$(cd "$(dirname "$0")/.." && pwd)} && . "$ProjectDir/support/abc.sh"
 
-while test $# -gt 0; do
-        case "$1" in
-                -v) ProgressVerbose=yes; shift;;
-                -d) set -x; shift;;
-                -*) echo "Invalid argument '$1'." && exit 1;;
-                *)  InitFound=yes; . "$0.d/$1.sh"; shift;;
-        esac
-done
-
-if test ! "${InitFound:-}" = 'yes'; then
-        . "$0.d/default.sh"
+if test $# -eq 0; then
+        set -- default
 fi
+
+for init; do
+        . "$0.d/$init.sh"
+done

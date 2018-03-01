@@ -1,2 +1,3 @@
+/receipt
 /lib/**/*.sho
-/.lib.stats
+/lib.stats

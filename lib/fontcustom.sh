@@ -17,18 +17,13 @@ setup_fontcustom()
 
         gem_install fontcustom
 
-        if test ! -e "$Woff2Dir/.git"; then
-                mkdir -p "$Woff2Dir"
-
-                git clone --recursive https://github.com/google/woff2.git "$Woff2Dir"
-        fi
+        test -e "$Woff2Dir/.git" || git clone --recursive https://github.com/google/woff2.git "$Woff2Dir"
 
         if test ! -x "$Woff2Dir/woff2_info"; then
                 cd "$Woff2Dir"
-
                 git checkout "$Woff2Rev"
-
                 make --silent clean all
+                cd -
         fi
 )}
 

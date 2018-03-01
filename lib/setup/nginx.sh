@@ -1,5 +1,7 @@
 setup_nginx()
 {(
+        echo '[DEPRECATED] Use Brew Bundle to install Nginx.'
+
         from . import os
 
         if is_macos; then
@@ -9,6 +11,8 @@ setup_nginx()
 
 setup_nginx_for_macos()
 {(
+        echo '[DEPRECATED] Use Brew Bundle to install Nginx.'
+
         from . import brew
 
         brew_install nginx

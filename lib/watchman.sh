@@ -1,6 +1,6 @@
 : ${WatchmanMakeCmd:=$ZeroDir/build}
 : ${WatchmanMakeArgs:=--settle 0.2}
-: ${WatchmanMakePatterns:=\'**/*\'}
+: ${WatchmanMakePatterns:=**/*}
 
 watchmanmake()
 {(
@@ -15,7 +15,7 @@ watchmanmake()
 
         set -f ## noglob
 
-        eval "set -- -p $WatchmanMakePatterns $WatchmanMakeArgs --run \"$WatchmanMakeCmd $*\""
+        eval "set -- $WatchmanMakeArgs --pattern \"$WatchmanMakePatterns\" --run \"$WatchmanMakeCmd $*\""
 
         ${WatchmanMakeBin:-$(which watchman-make)} "$@"
 )}
