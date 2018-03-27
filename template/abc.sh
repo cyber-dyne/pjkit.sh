@@ -1,21 +1,14 @@
-set -e ## errexit
-set -u ## nounset
+if test -e "$ProjectDir/support/env.sh"; then
+        . "$ProjectDir/support/env.sh"
+fi
 
-: ${ShiftRev:=4b77bf8}
-: ${PjkitRev:=a906bb6}
-: ${ShiftUrl:=https://github.com/evilcorptech/shift.git}
-: ${SandboxDir:=$ProjectDir/sandbox}
-: ${SystemDir:=$SandboxDir/system}
-: ${SHIFT_DIR:=$SystemDir/shift}
-: ${SHIFT_HOME_DIR:=$SystemDir/shift.d}
+. "$ProjectDir/support/shift.sh"
 
-test -e "$SHIFT_DIR" || git clone --quiet "$ShiftUrl" "$SHIFT_DIR"
-git -C "$SHIFT_DIR" checkout --quiet "${ShiftRev}^0"
+require 'https://github.com/evilcorptech/pjkit.sh.git' -rev 1.0.1
 
-. "$SHIFT_DIR/lib/shift.sh"
+import pjkit/env
+import pjkit/os
 
-require 'https://github.com/evilcorptech/pjkit.sh.git' -rev $PjkitRev
-
-from pjkit import env
-
-export PATH="$SystemDir/bin:$SystemDir/brew/bin${PATH:+:$PATH}"
+if is_macos; then
+        import pjkit/brew
+fi
